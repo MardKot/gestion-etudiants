@@ -39,4 +39,15 @@ button.delete-btn {
   padding: 0.4rem 0.8rem;
   cursor: pointer;
 }
+#cancel-edit {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#cancel-edit:hover {
+  background-color: #aaa;
+}
 
