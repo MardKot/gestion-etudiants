@@ -50,4 +50,68 @@ button.delete-btn {
 #cancel-edit:hover {
   background-color: #aaa;
 }
+/* Boutons généraux */
+button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Bouton "Ajouter" / "Modifier" principal */
+#student-form button[type="submit"] {
+  background-color: #2a7ae2;
+  color: white;
+  font-weight: bold;
+}
+
+#student-form button[type="submit"]:hover {
+  background-color: #1d5abf;
+  transform: scale(1.05);
+}
+
+/* Bouton Supprimer (rouge) */
+.delete-btn {
+  background-color: #e63946;
+  color: white;
+  margin: 0 0.3rem;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Bouton Modifier (bleu) */
+.edit-btn {
+  background-color: #00b894;
+  color: white;
+  margin: 0 0.3rem;
+}
+
+.edit-btn:hover {
+  background-color: #009874;
+  transform: scale(1.05);
+}
+
+/* Bouton Annuler (gris clair) */
+#cancel-edit {
+  background-color: #aaa;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+#cancel-edit:hover {
+  background-color: #888;
+  transform: scale(1.05);
+}
+
+/* Message de confirmation */
+#message {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
 
