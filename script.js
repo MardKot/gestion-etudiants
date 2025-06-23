@@ -1,5 +1,11 @@
 let students = JSON.parse(localStorage.getItem('students')) || [];
-let editIndex = null; // Pour savoir si on modifie ou on ajoute
+let editIndex = null;
+
+const form = document.getElementById('student-form');
+const messageEl = document.getElementById('message');
+const cancelEditBtn = document.getElementById('cancel-edit');
+const editControls = document.getElementById('edit-controls');
+const submitBtn = form.querySelector('button[type="submit"]');
 
 function renderTable() {
   const tbody = document.querySelector('#student-table tbody');
@@ -24,6 +30,7 @@ function renderTable() {
 function deleteStudent(index) {
   students.splice(index, 1);
   localStorage.setItem('students', JSON.stringify(students));
+  showMessage("Étudiant supprimé !");
   renderTable();
 }
 
@@ -33,10 +40,21 @@ function editStudent(index) {
   document.getElementById('firstname').value = student.firstname;
   document.getElementById('age').value = student.age;
   document.getElementById('course').value = student.course;
-  editIndex = index; // On retient qu'on est en mode modification
+  editIndex = index;
+
+  submitBtn.textContent = "Modifier";
+  editControls.style.display = "block";
 }
 
-document.getElementById('student-form').addEventListener('submit', function(e) {
+cancelEditBtn.addEventListener('click', () => {
+  form.reset();
+  editIndex = null;
+  submitBtn.textContent = "Ajouter";
+  editControls.style.display = "none";
+  messageEl.textContent = "";
+});
+
+form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const lastname = document.getElementById('lastname').value.trim();
@@ -49,15 +67,26 @@ document.getElementById('student-form').addEventListener('submit', function(e) {
 
     if (editIndex !== null) {
       students[editIndex] = student;
+      showMessage("✅ Étudiant modifié !");
       editIndex = null;
+      submitBtn.textContent = "Ajouter";
+      editControls.style.display = "none";
     } else {
       students.push(student);
+      showMessage("✅ Étudiant ajouté !");
     }
 
     localStorage.setItem('students', JSON.stringify(students));
     renderTable();
-    this.reset();
+    form.reset();
   }
 });
+
+function showMessage(text) {
+  messageEl.textContent = text;
+  setTimeout(() => {
+    messageEl.textContent = "";
+  }, 3000);
+}
 
 renderTable();
