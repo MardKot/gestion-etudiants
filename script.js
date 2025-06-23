@@ -44,15 +44,22 @@ function deleteStudent(index) {
 
 function editStudent(index) {
   const student = students[index];
-  document.getElementById('lastname').value = student.lastname;
-  document.getElementById('firstname').value = student.firstname;
-  document.getElementById('age').value = student.age;
-  document.getElementById('course').value = student.course;
-  editIndex = index;
+  const confirmEdit = confirm(
+    `✏️ Voulez-vous modifier les informations de ${student.firstname} ${student.lastname} ?`
+  );
 
-  submitBtn.textContent = "Modifier";
-  editControls.style.display = "block";
+  if (confirmEdit) {
+    document.getElementById('lastname').value = student.lastname;
+    document.getElementById('firstname').value = student.firstname;
+    document.getElementById('age').value = student.age;
+    document.getElementById('course').value = student.course;
+    editIndex = index;
+
+    submitBtn.textContent = "Modifier";
+    editControls.style.display = "block";
+  }
 }
+
 
 cancelEditBtn.addEventListener('click', () => {
   form.reset();
