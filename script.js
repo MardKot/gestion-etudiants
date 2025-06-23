@@ -7,7 +7,8 @@ function renderTable() {
   students.forEach((student, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${student.name}</td>
+      <td>${student.lastname}</td>
+      <td>${student.firstname}</td>
       <td>${student.age}</td>
       <td>${student.course}</td>
       <td><button class="delete-btn" onclick="deleteStudent(${index})">Supprimer</button></td>
@@ -24,12 +25,13 @@ function deleteStudent(index) {
 
 document.getElementById('student-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const name = document.getElementById('name').value.trim();
+  const lastname = document.getElementById('lastname').value.trim();
+  const lastname = document.getElementById('firstname').value.trim();
   const age = document.getElementById('age').value.trim();
   const course = document.getElementById('course').value.trim();
 
-  if (name && age && course) {
-    students.push({ name, age, course });
+  if (lastname && firstname && age && course) {
+    students.push({ lastname, firstname, age, course });
     localStorage.setItem('students', JSON.stringify(students));
     renderTable();
     this.reset();
