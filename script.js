@@ -1,3 +1,31 @@
+const modalOverlay = document.getElementById("modal-overlay");
+const modalMessage = document.getElementById("modal-message");
+const modalYesBtn = document.getElementById("modal-yes");
+const modalNoBtn = document.getElementById("modal-no");
+
+let modalConfirmCallback = null;
+
+function showModal(message, onConfirm) {
+  modalMessage.textContent = message;
+  modalOverlay.classList.remove("hidden");
+
+  modalConfirmCallback = () => {
+    onConfirm();
+    hideModal();
+  };
+}
+
+function hideModal() {
+  modalOverlay.classList.add("hidden");
+  modalConfirmCallback = null;
+}
+
+modalYesBtn.addEventListener("click", () => {
+  if (modalConfirmCallback) modalConfirmCallback();
+});
+
+modalNoBtn.addEventListener("click", hideModal);
+
 let students = JSON.parse(localStorage.getItem('students')) || [];
 let editIndex = null;
 
@@ -29,36 +57,36 @@ function renderTable() {
 
 function deleteStudent(index) {
   const student = students[index];
-  const confirmDelete = confirm(
-    `⚠️ Êtes-vous sûr de vouloir supprimer l’étudiant ${student.firstname} ${student.lastname} ?`
+  showModal(
+    `🗑️ Voulez-vous vraiment supprimer ${student.firstname} ${student.lastname} ?`,
+    () => {
+      students.splice(index, 1);
+      localStorage.setItem('students', JSON.stringify(students));
+      showMessage("Étudiant supprimé !");
+      renderTable();
+    }
   );
-
-  if (confirmDelete) {
-    students.splice(index, 1);
-    localStorage.setItem('students', JSON.stringify(students));
-    showMessage("🗑️ Étudiant supprimé !");
-    renderTable();
-  }
 }
+
 
 
 function editStudent(index) {
   const student = students[index];
-  const confirmEdit = confirm(
-    `✏️ Voulez-vous modifier les informations de ${student.firstname} ${student.lastname} ?`
+  showModal(
+    `✏️ Voulez-vous modifier les infos de ${student.firstname} ${student.lastname} ?`,
+    () => {
+      document.getElementById('lastname').value = student.lastname;
+      document.getElementById('firstname').value = student.firstname;
+      document.getElementById('age').value = student.age;
+      document.getElementById('course').value = student.course;
+      editIndex = index;
+
+      submitBtn.textContent = "Modifier";
+      editControls.style.display = "block";
+    }
   );
-
-  if (confirmEdit) {
-    document.getElementById('lastname').value = student.lastname;
-    document.getElementById('firstname').value = student.firstname;
-    document.getElementById('age').value = student.age;
-    document.getElementById('course').value = student.course;
-    editIndex = index;
-
-    submitBtn.textContent = "Modifier";
-    editControls.style.display = "block";
-  }
 }
+
 
 
 cancelEditBtn.addEventListener('click', () => {
