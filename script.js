@@ -25,6 +25,7 @@ function deleteStudent(index) {
 
 document.getElementById('student-form').addEventListener('submit', function(e) {
   e.preventDefault();
+
   const lastname = document.getElementById('lastname').value.trim();
   const firstname = document.getElementById('firstname').value.trim();
   const age = document.getElementById('age').value.trim();
@@ -39,4 +40,3 @@ document.getElementById('student-form').addEventListener('submit', function(e) {
 });
 
 renderTable();
-
