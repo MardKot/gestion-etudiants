@@ -7,35 +7,38 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 </head>
-<body>
-  <h1>Gestion des Étudiants</h1>
+<div class="container">
+    <h1>🎓 Gestion des Étudiants</h1>
 
-  <form id="student-form">
-    <input type="text" id="lastname" placeholder="Nom de l'étudiant" required>
-    <input type="text" id="firstname" placeholder="Prénom de l'étudiant" required>
-    <input type="number" id="age" placeholder="Âge" required>
-    <input type="text" id="course" placeholder="Formation" required>
-    <button type="submit">Ajouter</button>
-  </form>
-  <div id="edit-controls" style="display: none; text-align: center; margin-bottom: 1rem;">
-  <span id="message" style="color: green; font-weight: bold;"></span><br>
-  <button id="cancel-edit" type="button">Annuler la modification</button>
-</div>
+    <form id="student-form">
+      <input type="text" id="lastname" placeholder="Nom" required />
+      <input type="text" id="firstname" placeholder="Prénom" required />
+      <input type="number" id="age" placeholder="Âge" required />
+      <input type="text" id="course" placeholder="Formation" required />
+      <button type="submit"><i class="fas fa-plus"></i> Ajouter</button>
+    </form>
 
-  <h2>Liste des étudiants</h2>
-  <table id="student-table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Âge</th>
-        <th>Formation</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <div id="edit-controls">
+      <span id="message"></span><br />
+      <button id="cancel-edit"><i class="fas fa-times-circle"></i> Annuler la modification</button>
+    </div>
 
+    <h2>Liste des Étudiants</h2>
+    <div class="table-wrapper">
+      <table id="student-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Âge</th>
+            <th>Formation</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
