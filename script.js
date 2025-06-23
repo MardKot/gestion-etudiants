@@ -28,11 +28,19 @@ function renderTable() {
 }
 
 function deleteStudent(index) {
-  students.splice(index, 1);
-  localStorage.setItem('students', JSON.stringify(students));
-  showMessage("Étudiant supprimé !");
-  renderTable();
+  const student = students[index];
+  const confirmDelete = confirm(
+    `⚠️ Êtes-vous sûr de vouloir supprimer l’étudiant ${student.firstname} ${student.lastname} ?`
+  );
+
+  if (confirmDelete) {
+    students.splice(index, 1);
+    localStorage.setItem('students', JSON.stringify(students));
+    showMessage("🗑️ Étudiant supprimé !");
+    renderTable();
+  }
 }
+
 
 function editStudent(index) {
   const student = students[index];
