@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion d'Étudiants</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Gestion des Étudiants</h1>
+
+  <form id="student-form">
+    <input type="text" id="name" placeholder="Nom de l'étudiant" required>
+    <input type="number" id="age" placeholder="Âge" required>
+    <input type="text" id="course" placeholder="Formation" required>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Liste des étudiants</h2>
+  <table id="student-table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Âge</th>
+        <th>Formation</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
